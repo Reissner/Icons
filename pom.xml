@@ -19,26 +19,28 @@
     That way, presence of gif files can be tested at compile time.
   </description>
 
-  <url>http://www.simuline.eu</url><!-- TBD: create -->
+  <url>https://github.com/Reissner/icons</url>
   <licenses>
     <license>
-      <name>MIT</name>
-      <!--url>http://www.simuline.eu/LICENSE-1.0.txt</url>
-	  <distribution>repo</distribution>
-	  <comments>This license prohibits all kinds of distribution. </comments-->
+      <name>The MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+      <comments>The most admissive license I know</comments>
     </license>
   </licenses>
 
   
   <organization>
-    <name>l2r.org</name>
+    <name>Simuline Organization (l2r)</name>
     <url>http://www.simuline.eu</url>
   </organization>
   
   <developers>
     <developer>
       <name>Ernst Reissner</name>
-      <email>Ernst.Reissner@simuline.eu</email>
+      <email>Ernst.Reissner at simuline dot eu</email>
+      <organization>simuline</organization>
+      <organizationUrl>https://www.simuline.eu</organizationUrl>
       <timezone>Europe/Berlin</timezone>
     </developer>
   </developers>
@@ -65,7 +67,7 @@
   </scm>
 
 
-    <distributionManagement><!-- For authentication see ~/.m2/settings.xml -->
+  <distributionManagement><!-- For authentication see ~/.m2/settings.xml -->
     <site>
       <id>publicSiteAtSimuline</id>
       <url>ftp://www.simuline.eu/public_html/LatexMavenPlugin</url>
@@ -93,6 +95,7 @@
     </issueManagement-->
 
   <properties>
+    <versionMvn>3.6.3</versionMvn>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -122,11 +125,70 @@
 
     
     <plugins>
+			<!-- at the moment just to enforce maven version
+	   use as mvn validate not as mvn enforcer:enforce
+	   TBD: add a lot of tests -->
+     <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-enforcer-plugin</artifactId>
+      <version>3.0.0-M3</version>
+      <executions>
+        <execution>
+          <id>enforce-maven</id>
+          <phase>validate</phase>
+          <goals>
+            <goal>enforce</goal>
+          </goals>
+        </execution>
+      </executions>
+      <configuration>
+        <rules>
+          <requireMavenVersion>
+            <version>${versionMvn}</version>
+            <message>
+       Invalid Maven version. It should, at least, be ${versionMvn}
+            </message>
+          </requireMavenVersion>
+          <requireJavaVersion>
+            <version>11</version>
+          </requireJavaVersion>
+          <!--dependencyConvergence/-->						<!-- this fails because of plugin-api -->
+        </rules>
+      </configuration>
+    </plugin>
+
+		<!-- information about a project or the system -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-help-plugin</artifactId>
+			<version>3.2.0</version>
+		</plugin>
+
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-release-plugin</artifactId>
+      <version>3.0.0-M5</version>
+    </plugin>
+
+		<!-- configuration for clean plugin -->
+		<plugin>
+			<artifactId>maven-clean-plugin</artifactId>
+			<version>3.2.0</version>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-resources-plugin</artifactId>
+      <version>3.2.0</version>
+    </plugin>
+
+
      <!-- configuration for the compile plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>3.8.1</version>
         <configuration>
             <source>1.8</source>
             <target>1.8</target>
@@ -157,7 +219,110 @@
 	  <showWarnings>false</showWarnings>
         </configuration>
       </plugin>
+
+
+      <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
+      </plugin>
+
+
+      <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>3.0.0-M1</version>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>3.0.0-M2</version>
+			</plugin>
+
+
+			<!-- javadoc plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<breakiterator>true</breakiterator>
+					<show>private</show>
+					<source>11</source>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+      </plugin>
+
+      <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.7.1</version>
+				<configuration>
+					<locales>en</locales>
+				</configuration>
+			</plugin>
+
+
     </plugins>
   </build>
+
+
+  <reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.2.2</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+			</plugin>
+
+			<!-- offers also command line analysis:
+      mvn versions:display-plugin-updates
+      mvn versions:display-dependency-updates
+      mvn versions:display-property-updates
+      -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<!-- TBD: uniform version -->
+				<version>2.9.0</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependency-updates-report</report>
+							<report>plugin-updates-report</report>
+							<report>property-updates-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+
+			<!-- changes plugin: src/changes/changes.xml -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>2.12.1</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>changes-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+
+    </plugins>
+  </reporting>
 
 </project>
