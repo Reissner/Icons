@@ -1,12 +1,19 @@
 package eu.simuline.util.images;
 
 import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+
+import java.awt.Image;
 
 import java.net.URL;
 import java.net.MalformedURLException;
 
+import java.io.IOException;
+
 import java.util.Map;
 import java.util.HashMap;
+
+
 import org.javalobby.icons20x20.Open;
 import org.javalobby.icons20x20.Hammer;
 
@@ -177,7 +184,13 @@ public abstract class GifResource {
 
 	    // **** the following works even 
 	    // if the url does not point to any file.
-	    GIFS.put(res, new ImageIcon(url));
+        try {
+            Image image = ImageIO.read(url);
+            GIFS.put(res, new ImageIcon(image));
+        } catch(IOException e) {
+            throw new UnsatisfiedLinkError// NOPMD
+		    ("Resource no image: " + path);
+        }
 	    ret = GIFS.get(res);
 	}
 	assert ret == GIFS.get(res);
