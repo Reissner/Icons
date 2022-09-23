@@ -1,8 +1,7 @@
 <document xmlns="http://maven.apache.org/changes/1.0.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/changes/1.0.0
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/changes/1.0.0
 			      http://maven.apache.org/xsd/changes-1.0.0.xsd">
-  
+
   <!-- https://maven.apache.org/plugins/maven-changes-plugin/changes.html -->
   <!-- action types: 
        add: added functionnality to the project.
@@ -14,14 +13,27 @@
     <author email="reissner@simuline.eu">Ernst Reissner</author>
   </properties>
   <body>
-    <!--release version="0.0.1-SNAPSHOT" 
-	date="2005-01-01" 
-	description="First release">
-	<action dev="reissner" type="add">
+    <release version="0.1" date="2022-05-05" description="First release">
+      <action dev="reissner" type="add">
         Added to this project what was extracted from general source tree. 
-	</action>
-	</release-->
+      </action>
+    </release>
 
+    <release version="0.2" date="2022-05-05" description="First release">
+      <action dev="reissner" type="fix">
+        Moved GIFs from javalobby to proper place. 
+        Now they are loaded. 
+      </action>
+      <action dev="reissner" type="fix">
+        Class GifResource: added a check 
+        whether the URL points to sth resembling an image. 
+      </action>
+      <action dev="reissner" type="fix">
+        Reworked readme adding hint to originator. 
+      </action>
+    </release>
+
+ 
     <!-- TBD: in folder main/resources/ there is a tar icons.tar 
 	 which shall be re-placed.  -->
     <!-- TBD: in folder main/resources/eu/simuline/sun/plaf/ocean 
