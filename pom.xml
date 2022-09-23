@@ -68,7 +68,7 @@
   <distributionManagement><!-- For authentication see ~/.m2/settings.xml -->
     <site>
       <id>publicSiteAtSimuline</id>
-      <url>ftp://www.simuline.eu/public_html/LatexMavenPlugin</url>
+      <url>ftp://www.simuline.eu/public_html/Icons</url>
     </site>
 
     <repository>
@@ -79,17 +79,17 @@
 
  <mailingLists>
     <!--mailingList>
-      <name>maven-latex-plugin Users</name>
-      <archive>http://groups.google.com/group/maven-latex-plugin-users</archive>
-      <post>maven-latex-plugin-users@googlegroups.com</post>
-      <subscribe>maven-latex-plugin-users+subscribe@googlegroups.com</subscribe>
-      <unsubscribe>maven-latex-plugin-users+unsubscribe@googlegroups.com</unsubscribe>
+      <name>Icons Users</name>
+      <archive>http://groups.google.com/group/icons-users</archive>
+      <post>icons-users@googlegroups.com</post>
+      <subscribe>icons-users+subscribe@googlegroups.com</subscribe>
+      <unsubscribe>icons-users+unsubscribe@googlegroups.com</unsubscribe>
     </mailingList-->
   </mailingLists>
 
   <!--issueManagement>
     <system>Github Issues</system>
-    <url>https://github.com/akquinet/maven-latex-plugin/issues</url>
+    <url>https://github.com/reissner/icons/issues</url>
     </issueManagement-->
 
   <properties>
