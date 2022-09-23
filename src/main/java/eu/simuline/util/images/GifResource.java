@@ -176,10 +176,10 @@ public abstract class GifResource {
 	    path = path.replace(CLASS, RESOURCE); /// **** a little weak
 	    //System.out.println("path3: "+path);
 	    try {
-		url = new URL(path);
+		    url = new URL(path);
 	    } catch (MalformedURLException e) {
-		throw new UnsatisfiedLinkError// NOPMD
-		    ("Resource not found: " + path);
+		    throw new UnsatisfiedLinkError// NOPMD
+		        ("Resource not found: " + path);
 	    }
 
 	    // **** the following works even 
@@ -189,7 +189,7 @@ public abstract class GifResource {
             GIFS.put(res, new ImageIcon(image));
         } catch(IOException e) {
             throw new UnsatisfiedLinkError// NOPMD
-		    ("Resource no image: " + path);
+		        ("Resource no image: " + path);
         }
 	    ret = GIFS.get(res);
 	}
@@ -199,8 +199,8 @@ public abstract class GifResource {
     }
 
     public static final void main(String[] args) {
-	ImageIcon icon = getIcon(Hammer.class);
-	System.out.println("icon: " + icon.getImage());
-	System.out.println("icon: " + icon.getIconWidth());
+	    ImageIcon icon = getIcon(Hammer.class);
+	    System.out.println("icon: " + icon.getImage());
+	    System.out.println("icon: " + icon.getIconWidth());
     }
 }
