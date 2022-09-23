@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>eu.simuline</groupId>
   <artifactId>icons</artifactId>
-  <version>0.3-SNAPSHOT</version>
+  <version>0.3</version>
   <packaging>jar</packaging>
 
 
@@ -61,7 +61,7 @@
       scm:git:https://github.com/Reissner/icons.git
     </developerConnection>
     <url>https://github.com/Reissner/icons</url>
-    <tag>icons-0.1</tag>
+    <tag>icons-0.3</tag>
   </scm>
 
 
